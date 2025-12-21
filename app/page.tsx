@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { RotateCcw } from "lucide-react";
+import UnlockGift from "../components/UnlockGift";
 
 export default function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -9,6 +10,7 @@ export default function TicTacToe() {
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
   const [winner, setWinner] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [giftUnlocked, setGiftUnlocked] = useState(false);
 
   const checkWinner = (currentBoard) => {
     const lines = [
@@ -29,6 +31,9 @@ export default function TicTacToe() {
         currentBoard[a] === currentBoard[b] &&
         currentBoard[a] === currentBoard[c]
       ) {
+        if (currentBoard[a] === "X") {
+          setGiftUnlocked(true); // Unlock gift when player wins
+        }
         return currentBoard[a];
       }
     }
@@ -154,6 +159,7 @@ export default function TicTacToe() {
     setIsPlayerTurn(true);
     setWinner(null);
     setGameOver(false);
+    setGiftUnlocked(false);
   };
 
   const getCellOpacity = (index) => {
@@ -172,10 +178,10 @@ export default function TicTacToe() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
         <h1 className="text-3xl font-bold text-center mb-2 text-gray-800">
-          Limited Tic Tac Toe
+          Limited Tic Tac Toes
         </h1>
         <p className="text-center text-sm text-gray-600 mb-6">
           Max 3 pieces per player!
@@ -222,12 +228,13 @@ export default function TicTacToe() {
 
         <button
           onClick={resetGame}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
+          className="w-full bg-black hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
         >
           <RotateCcw size={20} />
           New Game
         </button>
       </div>
+      {giftUnlocked && <UnlockGift onUnlock={giftUnlocked} />}
     </div>
   );
 }
