@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import PipTree from "./PipTree";
+import { useRouter } from "next/navigation";
 import { Lock, Unlock, X } from "lucide-react";
 
 const UnlockGift = ({ onUnlock }) => {
-  const [showPineTree, setShowPineTree] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState(["", "", "", ""]);
   const [error, setError] = useState(false);
   const inputRefs = useRef([]);
+  const router = useRouter();
 
   useEffect(() => {
     if (onUnlock) {
@@ -38,9 +38,9 @@ const UnlockGift = ({ onUnlock }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const enteredPassword = password.join("");
-    if (enteredPassword === "1234") {
+    if (enteredPassword === "1412") {
       setShowModal(false);
-      setShowPineTree(true);
+      router.push('/confess');
     } else {
       setError(true);
       setPassword(["", "", "", ""]);
@@ -101,29 +101,6 @@ const UnlockGift = ({ onUnlock }) => {
                   Unlock Gift
                 </button>
               </form>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* PipTree Display */}
-      {showPineTree && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-500">
-          <div className="relative w-full max-w-4xl h-[80vh] bg-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-800">
-            <button
-              onClick={() => setShowPineTree(false)}
-              className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full backdrop-blur-md transition-colors"
-            >
-              <X size={24} />
-            </button>
-            <PipTree />
-            <div className="absolute bottom-8 left-0 right-0 text-center pointer-events-none">
-              <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
-                Merry Christmas! 🎄
-              </h2>
-              <p className="text-gray-300 drop-shadow-md">
-                Enjoy your 3D Pine Tree
-              </p>
             </div>
           </div>
         </div>
