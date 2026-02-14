@@ -234,7 +234,7 @@ export default function TicTacToe() {
           New Game
         </button>
       </div>
-      {giftUnlocked && <UnlockGift onUnlock={giftUnlocked} />}
+      {giftUnlocked && <UnlockGift onUnlock={giftUnlocked} onReset={resetGame} />}
     </div>
   );
 }

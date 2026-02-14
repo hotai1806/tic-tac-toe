@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Lock, Unlock, X } from "lucide-react";
 
-const UnlockGift = ({ onUnlock }) => {
+const UnlockGift = ({ onUnlock, onReset }) => {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState(["", "", "", ""]);
   const [error, setError] = useState(false);
@@ -44,7 +44,9 @@ const UnlockGift = ({ onUnlock }) => {
     } else {
       setError(true);
       setPassword(["", "", "", ""]);
-      inputRefs.current[0].focus();
+      setTimeout(() => {
+        if (onReset) onReset();
+      }, 1000);
     }
   };
 
@@ -89,7 +91,7 @@ const UnlockGift = ({ onUnlock }) => {
 
                 {error && (
                   <p className="text-red-500 text-center text-sm mb-4 font-medium animate-pulse">
-                    Incorrect password. Try again!
+                    Incorrect password. Game will reset...
                   </p>
                 )}
 

@@ -46,7 +46,7 @@ export default function ConfessPage() {
             I love you Vy,
           </p>
           <p className="text-base md:text-lg text-gray-700">
-            Anh rất mong tụi mình có thể đồng hành với nhau đi đến đoạn xa nhất của con đường.  
+            Anh rất mong tụi mình có thể đồng hành với nhau đi đến đoạn xa nhất của con đường. Tụi mình đến với nhau thật tự nhiên đến nổi mà khi nhìn thời gian trôi qua anh không nghĩ là tụi mình chỉ mới gặp nhau chưa tròn 3 tháng nữa :))), Lời anh nói có những điều làm em chưa vui mong em hãy giúp anh cải thiện để tụi mình hiểu nhau hơn. Anh yêu em nhiều lắm Vy
           </p>
           <div className="mt-6 md:mt-8 text-4xl md:text-6xl text-center">
             ❤️
